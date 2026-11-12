@@ -1,0 +1,132 @@
+
+======================================================================
+  1. INGESTA DESDE MySQL Y EDA MÍNIMO
+======================================================================
+Registros extraídos: 41,495
+Nulos por columna (antes de imputar):
+posicion            0
+estatura_cm      2183
+edad                0
+valor_mercado       0
+Distribución de posiciones:
+posicion
+Defender      13403
+Midfield      12002
+Attack        11361
+Goalkeeper     4602
+Missing         127
+Umbral Q3 (P75) de valor de mercado: € 700,000
+Proporción de clases: Estándar=73.31%  Élite=26.69%
+Estaturas implausibles (< 140 cm): 11
+Tasa de Élite por posición:
+              mean   size
+posicion                 
+Attack      0.2963  11361
+Defender    0.2702  13403
+Goalkeeper  0.1528   4602
+Midfield    0.2820  12002
+Missing     0.0157    127
+Tasa de Élite por rango de edad:
+         mean  size
+edad               
+≤20    0.3588  1987
+21-23  0.3510  5525
+24-26  0.3832  6892
+27-29  0.3705  6937
+30-32  0.2668  6349
+33-35  0.1653  5095
+≥36    0.0778  8710
+
+======================================================================
+  2-3. SPLIT ESTRATIFICADO Y PREPROCESAMIENTO SIN FUGA DE DATOS
+======================================================================
+Medianas de estatura por posición (train): {'Attack': 180.0, 'Defender': 184.0, 'Goalkeeper': 190.0, 'Midfield': 179.0, 'Missing': 179.0}
+Mediana global estatura=182.0  edad=29.0
+Nulos después de imputar:
+estatura_cm    0
+edad           0
+Columnas X: ['edad', 'estatura_cm', 'posicion_Defender', 'posicion_Goalkeeper', 'posicion_Midfield', 'posicion_Missing']
+Train: 33,196 filas | Élite=26.6960%
+Test : 8,299 filas | Élite=26.6900%
+
+======================================================================
+  4. PARADOJA DE LA EXACTITUD (DummyClassifier most_frequent)
+======================================================================
+Accuracy = 0.7331  pero Recall Élite = 0.0: nunca detecta a un solo jugador Élite.
+
+======================================================================
+  5. DIAGNÓSTICO DE OVERFITTING
+======================================================================
+Árbol sin restricciones                Train=0.7575  Test=0.7157  Brecha=+0.0418  P=0.401  R=0.132  F1=0.198  AUC=0.652
+Árbol podado                           Train=0.7330  Test=0.7331  Brecha=-0.0001  P=0.000  R=0.000  F1=0.000  AUC=0.678
+Árbol podado + balanced                Train=0.6094  Test=0.5993  Brecha=+0.0100  P=0.374  R=0.741  F1=0.497  AUC=0.678
+Profundidad árbol libre = 25 (2693 hojas) vs. podado = 4 (16 hojas)
+
+======================================================================
+  6. RANDOM FOREST + GridSearchCV (StratifiedKFold k=5, scoring=roc_auc)
+======================================================================
+Fitting 5 folds for each of 72 candidates, totalling 360 fits
+72 combinaciones × 5 folds = 360 ajustes en 5.6 min
+Mejores parámetros: {'max_depth': 8, 'max_features': 'sqrt', 'min_samples_leaf': 5, 'n_estimators': 300}
+Mejor ROC-AUC CV = 0.7024  | F1 CV de esa combinación = 0.5114
+ rank_test_roc_auc  param_n_estimators param_max_depth  param_min_samples_leaf param_max_features  mean_test_roc_auc  std_test_roc_auc  mean_test_f1  mean_fit_time
+                 1                 300               8                       5               sqrt           0.702447          0.008220      0.511392       1.032228
+                 2                 300               8                      10               sqrt           0.702361          0.008509      0.511653       1.044327
+                 3                 200               8                       5               sqrt           0.702279          0.008178      0.511490       0.674348
+                 4                 200               8                      10               sqrt           0.702269          0.008505      0.511308       0.750938
+                 5                 300               8                       1               sqrt           0.702131          0.008293      0.511818       1.030700
+                 6                 200               8                       1               sqrt           0.701996          0.008330      0.511363       0.702292
+                 7                 100               8                       5               sqrt           0.701868          0.008030      0.510880       0.369844
+                 8                 300               6                       1               sqrt           0.701706          0.008273      0.506559       1.136600
+                 9                 100               8                      10               sqrt           0.701702          0.008545      0.511200       0.369504
+                10                 300               6                      10               sqrt           0.701671          0.008554      0.507202       1.027484
+Random Forest optimizado               Train=0.6197  Test=0.6054  Brecha=+0.0143  P=0.381  R=0.765  F1=0.508  AUC=0.694
+
+Classification report – RF optimizado (Test):
+              precision    recall  f1-score   support
+
+    Estándar     0.8647    0.5473    0.6704      6084
+       Élite     0.3808    0.7648    0.5085      2215
+
+    accuracy                         0.6054      8299
+   macro avg     0.6228    0.6561    0.5894      8299
+weighted avg     0.7356    0.6054    0.6272      8299
+
+
+======================================================================
+  7. CURVAS ROC COMPARATIVAS
+======================================================================
+AUC Árbol sin restricciones: 0.6523
+AUC Árbol podado: 0.6785
+AUC Random Forest optimizado: 0.6937
+
+======================================================================
+  8. IMPORTANCIA DE VARIABLES
+======================================================================
+Gini:
+edad                   0.7694
+estatura_cm            0.1266
+posicion_Goalkeeper    0.0760
+posicion_Missing       0.0099
+posicion_Defender      0.0094
+posicion_Midfield      0.0087
+Permutación (caída de ROC-AUC):
+edad                   0.1572
+posicion_Goalkeeper    0.0298
+estatura_cm            0.0292
+posicion_Midfield      0.0070
+posicion_Defender      0.0033
+posicion_Missing       0.0021
+Top 3 Gini: ['edad', 'estatura_cm', 'posicion_Goalkeeper'] | Top 3 permutación: ['edad', 'posicion_Goalkeeper', 'estatura_cm']
+¿Mismas 3 variables en el top? Sí (orden idéntico: No)
+
+======================================================================
+  EXPERIMENTOS COMPLETADOS
+======================================================================
+                  modelo  accuracy_train  accuracy_test  brecha  precision_elite  recall_elite  f1_elite  auc_test
+ Árbol sin restricciones          0.7575         0.7157  0.0418           0.4011        0.1318    0.1984    0.6523
+            Árbol podado          0.7330         0.7331 -0.0001           0.0000        0.0000    0.0000    0.6785
+ Árbol podado + balanced          0.6094         0.5993  0.0100           0.3736        0.7409    0.4967    0.6779
+Random Forest optimizado          0.6197         0.6054  0.0143           0.3808        0.7648    0.5085    0.6937
+
+Métricas -> reports/resultados/metricas.json | Figuras -> reports/figuras/

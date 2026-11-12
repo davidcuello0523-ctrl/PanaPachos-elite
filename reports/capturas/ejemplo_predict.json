@@ -1,0 +1,18 @@
+{
+  "request": {
+    "jugador": "Candidato B",
+    "posicion": "Goalkeeper",
+    "edad": 29,
+    "estatura_cm": null
+  },
+  "response": {
+    "jugador": "Candidato B",
+    "prediccion": "Estándar",
+    "clase": 0,
+    "probabilidad_elite": 33.88,
+    "probabilidad_estandar": 66.12,
+    "estatura_utilizada": 189.0,
+    "estatura_imputada": true,
+    "umbral_elite_eur": 700000.0
+  }
+}

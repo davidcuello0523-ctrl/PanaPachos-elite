@@ -1,0 +1,317 @@
+{
+  "datos": {
+    "registros": 41495,
+    "nulos_antes": {
+      "posicion": 0,
+      "estatura_cm": 2183,
+      "edad": 0,
+      "valor_mercado": 0
+    },
+    "distribucion_posiciones": {
+      "Defender": 13403,
+      "Midfield": 12002,
+      "Attack": 11361,
+      "Goalkeeper": 4602,
+      "Missing": 127
+    },
+    "umbral_q3_eur": 700000.0,
+    "n_elite": 11077,
+    "n_estandar": 30418,
+    "proporcion_elite": 0.26694782503916137,
+    "mediana_estatura_por_posicion_total": {
+      "Attack": 180.0,
+      "Defender": 184.0,
+      "Goalkeeper": 189.0,
+      "Midfield": 179.0,
+      "Missing": 179.0
+    },
+    "estatura_media": 182.0551231176231,
+    "estaturas_implausibles_menor_140": 11,
+    "tasa_elite_posicion": {
+      "Attack": {
+        "tasa": 0.29627673620279904,
+        "n": 11361
+      },
+      "Defender": {
+        "tasa": 0.27016339625456987,
+        "n": 13403
+      },
+      "Goalkeeper": {
+        "tasa": 0.15275966970882224,
+        "n": 4602
+      },
+      "Midfield": {
+        "tasa": 0.28203632727878686,
+        "n": 12002
+      },
+      "Missing": {
+        "tasa": 0.015748031496062992,
+        "n": 127
+      }
+    },
+    "tasa_elite_edad": {
+      "≤20": {
+        "tasa": 0.3588324106693508,
+        "n": 1987
+      },
+      "21-23": {
+        "tasa": 0.3509502262443439,
+        "n": 5525
+      },
+      "24-26": {
+        "tasa": 0.3831979106210099,
+        "n": 6892
+      },
+      "27-29": {
+        "tasa": 0.37047715150641486,
+        "n": 6937
+      },
+      "30-32": {
+        "tasa": 0.26681367144432194,
+        "n": 6349
+      },
+      "33-35": {
+        "tasa": 0.16526005888125614,
+        "n": 5095
+      },
+      "≥36": {
+        "tasa": 0.07784156142365098,
+        "n": 8710
+      }
+    },
+    "edad_mediana": 29.0,
+    "valor_mediano_eur": 275000.0,
+    "combinaciones_unicas_X": 3867,
+    "nulos_despues": {
+      "estatura_cm": 0,
+      "edad": 0
+    },
+    "medianas_estatura_train": {
+      "Attack": 180.0,
+      "Defender": 184.0,
+      "Goalkeeper": 190.0,
+      "Midfield": 179.0,
+      "Missing": 179.0
+    },
+    "mediana_global_estatura_train": 182.0,
+    "mediana_global_edad_train": 29.0,
+    "columnas_X": [
+      "edad",
+      "estatura_cm",
+      "posicion_Defender",
+      "posicion_Goalkeeper",
+      "posicion_Midfield",
+      "posicion_Missing"
+    ],
+    "n_train": 33196,
+    "n_test": 8299,
+    "proporcion_elite_train": 0.2669598746836968,
+    "proporcion_elite_test": 0.2668996264610194
+  },
+  "dummy": {
+    "accuracy_test": 0.7331003735389806,
+    "recall_elite": 0.0,
+    "precision_elite": 0.0,
+    "f1_elite": 0.0,
+    "matriz_confusion": [
+      [
+        6084,
+        0
+      ],
+      [
+        2215,
+        0
+      ]
+    ]
+  },
+  "gridsearch": {
+    "malla": {
+      "n_estimators": [
+        "100",
+        "200",
+        "300"
+      ],
+      "max_depth": [
+        "4",
+        "6",
+        "8",
+        "None"
+      ],
+      "min_samples_leaf": [
+        "1",
+        "5",
+        "10"
+      ],
+      "max_features": [
+        "sqrt",
+        "None"
+      ]
+    },
+    "n_combinaciones": 72,
+    "folds": 5,
+    "ajustes": 360,
+    "duracion_min": 5.642251217365265,
+    "mejores_parametros": {
+      "max_depth": 8,
+      "max_features": "sqrt",
+      "min_samples_leaf": 5,
+      "n_estimators": 300
+    },
+    "mejor_auc_cv": 0.7024465815497849,
+    "std_auc_cv": 0.008220417252709325,
+    "f1_cv": 0.5113922737687232,
+    "classification_report": {
+      "Estándar": {
+        "precision": 0.8647104648143339,
+        "recall": 0.5473372781065089,
+        "f1-score": 0.6703573225968797,
+        "support": 6084.0
+      },
+      "Élite": {
+        "precision": 0.3808453237410072,
+        "recall": 0.764785553047404,
+        "f1-score": 0.5084796638150983,
+        "support": 2215.0
+      },
+      "accuracy": 0.6053741414628269,
+      "macro avg": {
+        "precision": 0.6227778942776705,
+        "recall": 0.6560614155769564,
+        "f1-score": 0.589418493205989,
+        "support": 8299.0
+      },
+      "weighted avg": {
+        "precision": 0.7355670394043546,
+        "recall": 0.6053741414628269,
+        "f1-score": 0.6271522359356378,
+        "support": 8299.0
+      }
+    }
+  },
+  "modelos": {
+    "Árbol sin restricciones": {
+      "modelo": "Árbol sin restricciones",
+      "accuracy_train": 0.7575310278346788,
+      "accuracy_test": 0.7157488854078805,
+      "precision_elite": 0.4010989010989011,
+      "recall_elite": 0.13182844243792324,
+      "f1_elite": 0.1984369690791709,
+      "auc_test": 0.6522864991696385,
+      "matriz_confusion": [
+        [
+          5648,
+          436
+        ],
+        [
+          1923,
+          292
+        ]
+      ],
+      "brecha": 0.04178214242679834,
+      "profundidad": 25,
+      "hojas": 2693
+    },
+    "Árbol podado": {
+      "modelo": "Árbol podado",
+      "accuracy_train": 0.7330401253163031,
+      "accuracy_test": 0.7331003735389806,
+      "precision_elite": 0.0,
+      "recall_elite": 0.0,
+      "f1_elite": 0.0,
+      "auc_test": 0.678475830472705,
+      "matriz_confusion": [
+        [
+          6084,
+          0
+        ],
+        [
+          2215,
+          0
+        ]
+      ],
+      "brecha": -6.024822267747254e-05,
+      "profundidad": 4,
+      "hojas": 16
+    },
+    "Árbol podado + balanced": {
+      "modelo": "Árbol podado + balanced",
+      "accuracy_train": 0.6093505241595373,
+      "accuracy_test": 0.5993493191950837,
+      "precision_elite": 0.37363387978142076,
+      "recall_elite": 0.7408577878103837,
+      "f1_elite": 0.4967458755864992,
+      "auc_test": 0.6779006623597699,
+      "matriz_confusion": [
+        [
+          3333,
+          2751
+        ],
+        [
+          574,
+          1641
+        ]
+      ],
+      "brecha": 0.010001204964453558,
+      "profundidad": 4,
+      "hojas": 16
+    },
+    "Random Forest optimizado": {
+      "modelo": "Random Forest optimizado",
+      "accuracy_train": 0.619652970237378,
+      "accuracy_test": 0.6053741414628269,
+      "precision_elite": 0.3808453237410072,
+      "recall_elite": 0.764785553047404,
+      "f1_elite": 0.5084796638150983,
+      "auc_test": 0.6937313651022629,
+      "matriz_confusion": [
+        [
+          3330,
+          2754
+        ],
+        [
+          521,
+          1694
+        ]
+      ],
+      "brecha": 0.014278828774551111
+    }
+  },
+  "importancia": {
+    "gini": {
+      "edad": 0.7693600138377356,
+      "estatura_cm": 0.12664919233758273,
+      "posicion_Goalkeeper": 0.07600775299251263,
+      "posicion_Missing": 0.009935943486654646,
+      "posicion_Defender": 0.009358638611223939,
+      "posicion_Midfield": 0.008688458734290562
+    },
+    "permutacion": {
+      "edad": 0.15717581028876393,
+      "posicion_Goalkeeper": 0.02982510837737441,
+      "estatura_cm": 0.029175307916408832,
+      "posicion_Midfield": 0.006965155245672772,
+      "posicion_Defender": 0.003293061918691398,
+      "posicion_Missing": 0.0021009256414708964
+    },
+    "permutacion_std": {
+      "edad": 0.006304247908100044,
+      "estatura_cm": 0.003219372625266356,
+      "posicion_Defender": 0.0009828478063728505,
+      "posicion_Goalkeeper": 0.0020598200788201917,
+      "posicion_Midfield": 0.0008638746853414212,
+      "posicion_Missing": 0.0004359183026549505
+    },
+    "top3_gini": [
+      "edad",
+      "estatura_cm",
+      "posicion_Goalkeeper"
+    ],
+    "top3_permutacion": [
+      "edad",
+      "posicion_Goalkeeper",
+      "estatura_cm"
+    ],
+    "top3_coincide": true,
+    "top3_mismo_orden": false
+  }
+}

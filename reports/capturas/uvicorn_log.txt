@@ -1,0 +1,30 @@
+INFO:     Started server process [7840]
+INFO:     Waiting for application startup.
+INFO:     Modelo cargado desde C:\Users\david\Downloads\Universidad\8vo Semestre\Electiva II\models\modelo_scouting_rf.joblib
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+INFO:     127.0.0.1:58815 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58816 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58819 - "GET /docs HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58819 - "GET /openapi.json HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58819 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58819 - "GET /info HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "GET / HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "POST /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58825 - "OPTIONS /predict HTTP/1.1" 200 OK
+INFO:     127.0.0.1:58826 - "POST /predict HTTP/1.1" 422 Unprocessable Content

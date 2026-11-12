@@ -1,0 +1,10 @@
+{
+  "mejores_parametros": {
+    "max_depth": 8,
+    "max_features": "sqrt",
+    "min_samples_leaf": 5,
+    "n_estimators": 300
+  },
+  "mejor_auc_cv": 0.7024465815497849,
+  "f1_cv": 0.5113922737687232
+}
