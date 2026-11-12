@@ -67,6 +67,25 @@ def campo(parrafo, instr):
             r._r.append(t)
 
 
+def hipervinculo(par, url, texto=None):
+    rid = par.part.relate_to(url, "http://schemas.openxmlformats.org/officeDocument/2006/relationships/hyperlink",
+                             is_external=True)
+    h = OxmlElement("w:hyperlink")
+    h.set(qn("r:id"), rid)
+    r = OxmlElement("w:r")
+    rpr = OxmlElement("w:rPr")
+    for tag, val in (("w:color", "0563C1"), ("w:u", "single")):
+        el = OxmlElement(tag)
+        el.set(qn("w:val"), val)
+        rpr.append(el)
+    r.append(rpr)
+    t = OxmlElement("w:t")
+    t.text = texto or url
+    r.append(t)
+    h.append(r)
+    par._p.append(h)
+
+
 def fuente_run(run, nombre=FUENTE):
     run.font.name = nombre
     run._r.get_or_add_rPr().get_or_add_rFonts().set(qn("w:eastAsia"), nombre)
@@ -1021,6 +1040,16 @@ start index.html                         # 6. Abre el aplicativo web""", tam=8.5
          ConvertTo-Json
 Invoke-RestMethod -Uri http://127.0.0.1:8000/predict -Method Post `
                   -Body $body -ContentType "application/json\"""", tam=8.5)
+    inf.h2("Anexo C. Repositorio del proyecto")
+    inf.p("El código, el modelo y las evidencias están en GitHub:")
+    hipervinculo(inf.p(""), "https://github.com/davidcuello0523-ctrl/PanaPachos-elite")
+    inf.p("Para descargarlo y probarlo:")
+    inf.codigo("""git clone https://github.com/davidcuello0523-ctrl/PanaPachos-elite.git
+cd PanaPachos-elite
+pip install -r requirements.txt
+uvicorn main_api:app --port 8000""", tam=8.5)
+    inf.p("Con la API encendida se puede abrir `index.html` o la versión publicada:")
+    hipervinculo(inf.p(""), "https://davidcuello0523-ctrl.github.io/PanaPachos-elite/")
 
 
 def main():
