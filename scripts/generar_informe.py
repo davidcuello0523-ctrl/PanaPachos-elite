@@ -18,7 +18,7 @@ sys.path.insert(0, str(RAIZ))
 from src.estilo import ETIQUETAS_POSICION, etiqueta_variable  # noqa: E402
 
 FIG, CAP, RES = RAIZ / "reports/figuras", RAIZ / "reports/capturas", RAIZ / "reports/resultados"
-SALIDA = RAIZ / "Informe_Final_Scouting_David_Cuello.docx"
+SALIDA = RAIZ / "Informe Final Scouting David Cuello.docx"
 M = json.loads((RES / "metricas.json").read_text(encoding="utf-8"))
 D, MOD, GS, IMP = M["datos"], M["modelos"], M["gridsearch"], M["importancia"]
 PRIMARIO = RGBColor(0x1A, 0x1A, 0x1A)
@@ -1021,7 +1021,7 @@ def anexos(inf: Informe):
 │   ├── capturas/                     Evidencias de la API y del aplicativo web
 │   └── resultados/                   metricas.json, tablas CSV, mejores_parametros.json
 ├── requirements.txt · README.md · .env.example
-└── Informe_Final_Scouting_David_Cuello.pdf""", tam=8.5)
+└── Informe Final Scouting David Cuello.pdf""", tam=8.5)
     inf.h2("Anexo B. Instrucciones de ejecución")
     inf.p("Requisitos: Python 3.11 o superior, MySQL/MariaDB (XAMPP) con la base `mineria_datos` cargada y un "
           "archivo `.env` con las credenciales (ver `.env.example`). En PowerShell, desde la carpeta del proyecto:")

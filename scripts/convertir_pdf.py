@@ -3,7 +3,7 @@ from pathlib import Path
 import win32com.client
 
 RAIZ = Path(__file__).resolve().parents[1]
-DOCX = RAIZ / "Informe_Final_Scouting_David_Cuello.docx"
+DOCX = RAIZ / "Informe Final Scouting David Cuello.docx"
 PDF = DOCX.with_suffix(".pdf")
 
 word = win32com.client.DispatchEx("Word.Application")
